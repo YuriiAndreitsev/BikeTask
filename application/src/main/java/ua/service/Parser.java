@@ -11,21 +11,19 @@ import ua.model.Bike;
 import ua.model.Speedelec;
 
 public class Parser {
-//	public final static String SPEEDELEC = "SPEEDELEC";
-//	public final static String EBIKE = "E-BIKE";
-//	public final static String FOLDINGBIKE = "FOLDING BIKE";
 	List<Bike> allBikes = new ArrayList<Bike>();
+	
+	public void parseTXTFile(String filename) {
+		InputStream dataSource = App.class.getClassLoader().getResourceAsStream(filename);
 
-	public void parseTXTFile() {
-		InputStream dataSource = App.class.getClassLoader().getResourceAsStream("ecobike.txt");
 		DataInputStream dis = new DataInputStream(dataSource);
+		
 		Scanner scanner = new Scanner(dataSource);
 		scanner.useDelimiter("\n");
 		BikeReaderImpl reader = new BikeReaderImpl();
 
 		while (scanner.hasNext()) {
 			String line = scanner.next();
-//			System.out.println("check : "+line);
 			allBikes.add(reader.readBikeFromTXT(line));
 		}
 		scanner.close();

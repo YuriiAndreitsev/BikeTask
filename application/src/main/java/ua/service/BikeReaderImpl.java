@@ -13,9 +13,8 @@ public class BikeReaderImpl implements BikeReader {
 	@Override
 	public Bike readBikeFromTXT(String line) {
 		if (line.startsWith(FOLDINGBIKE)) {
-			System.out.println(readFoldingBike(line));
+			readFoldingBike(line);
 		}
-
 		if (line.startsWith(SPEEDELEC)) {
 			return readSpedelecBike(line);
 		} else if (line.startsWith(EBIKE)) {
@@ -23,7 +22,6 @@ public class BikeReaderImpl implements BikeReader {
 		} else {
 			return readFoldingBike(line);
 		}
-//		return null;
 	}
 
 	public Bike readSpedelecBike(String line) {
@@ -31,7 +29,7 @@ public class BikeReaderImpl implements BikeReader {
 
 		String[] tokens = line.split(";");
 
-		bike.setBrand(tokens[0].substring(9).trim());
+		bike.setBrand(tokens[0].substring(10));
 		bike.setMaxSpeed(Integer.valueOf(tokens[1].trim()));
 		bike.setWeight(Integer.valueOf(tokens[2].trim()));
 		bike.setLights(Boolean.parseBoolean((tokens[3].trim())));
@@ -45,7 +43,7 @@ public class BikeReaderImpl implements BikeReader {
 		EBike bike = new EBike();
 		String[] tokens = line.split(";");
 
-		bike.setBrand(tokens[0].substring(6));
+		bike.setBrand(tokens[0].substring(7));
 		bike.setMaxSpeed(Integer.valueOf(tokens[1].trim()));
 		bike.setWeight(Integer.valueOf(tokens[2].trim()));
 		bike.setLights(Boolean.parseBoolean(tokens[3].trim()));
@@ -59,7 +57,7 @@ public class BikeReaderImpl implements BikeReader {
 		FoldingBike bike = new FoldingBike();
 		String[] tokens = line.split(";");
 
-		bike.setBrand(tokens[0].substring(12));
+		bike.setBrand(tokens[0].substring(13));
 		bike.setSizeOfWheels(Integer.valueOf(tokens[1].trim()));
 		bike.setNumberOfGears(Integer.valueOf(tokens[2].trim()));
 		bike.setWeight(Integer.valueOf(tokens[3].trim()));

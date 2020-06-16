@@ -9,11 +9,10 @@ public class FoldingBike extends Bike implements Serializable{
 	 * availability of lights at front and back (TRUE/FALSE) - A color - The price
 	 */
 	private String brand;
-	private int sizeOfWheels;
-	private int numberOfGears;
+	private int wheels;
+	private int gears;
 	private int weight;
 	private boolean lights;
-
 	private String color;
 	private int price;
 
@@ -21,8 +20,8 @@ public class FoldingBike extends Bike implements Serializable{
 			int price) {
 		super();
 		this.brand = brand;
-		this.sizeOfWheels = sizeOfWheels;
-		this.numberOfGears = numberOfGears;
+		this.wheels = sizeOfWheels;
+		this.gears = numberOfGears;
 		this.weight = weight;
 		this.lights = lights;
 		this.color = color;
@@ -75,19 +74,19 @@ public class FoldingBike extends Bike implements Serializable{
 	}
 
 	public int getSizeOfWheels() {
-		return sizeOfWheels;
+		return wheels;
 	}
 
 	public void setSizeOfWheels(int sizeOfWheels) {
-		this.sizeOfWheels = sizeOfWheels;
+		this.wheels = sizeOfWheels;
 	}
 
 	public int getNumberOfGears() {
-		return numberOfGears;
+		return gears;
 	}
 
 	public void setNumberOfGears(int numberOfGears) {
-		this.numberOfGears = numberOfGears;
+		this.gears = numberOfGears;
 	}
 
 	@Override
@@ -97,9 +96,9 @@ public class FoldingBike extends Bike implements Serializable{
 		result = prime * result + ((brand == null) ? 0 : brand.hashCode());
 		result = prime * result + ((color == null) ? 0 : color.hashCode());
 		result = prime * result + (lights ? 1231 : 1237);
-		result = prime * result + numberOfGears;
+		result = prime * result + gears;
 		result = prime * result + price;
-		result = prime * result + sizeOfWheels;
+		result = prime * result + wheels;
 		result = prime * result + weight;
 		return result;
 	}
@@ -125,11 +124,11 @@ public class FoldingBike extends Bike implements Serializable{
 			return false;
 		if (lights != other.lights)
 			return false;
-		if (numberOfGears != other.numberOfGears)
+		if (gears != other.gears)
 			return false;
 		if (price != other.price)
 			return false;
-		if (sizeOfWheels != other.sizeOfWheels)
+		if (wheels != other.wheels)
 			return false;
 		if (weight != other.weight)
 			return false;

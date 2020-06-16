@@ -2,34 +2,28 @@ package ua.model;
 
 import java.io.Serializable;
 
-public class Speedelec extends Bike implements Serializable{
+public class Speedelec extends Bike implements Serializable {
 	private String brand;
-	private String color;
-	private int price;
-	private int weight;
 	private int maxSpeed;
+	private int weight;
 	private boolean lights;
 	private int mAh;
+	private String color;
+	private int price;
 
 	public Speedelec() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	
-	
 
-	public Speedelec(String brand, String color, int price, int weight, int maxSpeed, boolean lights, int mAh) {
-		super();
+	}
+
+	public Speedelec(String brand, int maxSpeed, int weight, boolean lights, int mAh, String color, int price) {
 		this.brand = brand;
-		this.color = color;
-		this.price = price;
-		this.weight = weight;
 		this.maxSpeed = maxSpeed;
+		this.weight = weight;
 		this.lights = lights;
 		this.mAh = mAh;
+		this.color = color;
+		this.price = price;
 	}
-
-
 
 	public int getMaxSpeed() {
 		return maxSpeed;
@@ -133,22 +127,14 @@ public class Speedelec extends Bike implements Serializable{
 		return true;
 	}
 
-//	@Override
-//	public String toString() {
-//		return "Spedelec [brand=" + brand + ", color=" + color + ", price=" + price + ", weight=" + weight
-//				+ ", maxSpeed=" + maxSpeed + ", lights=" + lights + ", mAh=" + mAh + "]\n";
-//	}
-
 	@Override
 	public String toString() {
-		// SPEEDELEC SPEEDELEC with 5426 mAh battery and head/tail light. Price: 875
-		// euros.
 		String light = "";
 		if (!isLights()) {
 			light = " no";
 		}
-		return "SPEEDELEC " + brand + " with " + mAh + " mAh battery and" + light + " head/tail light.\nPrice: "+getPrice()+ "euros.\n";
+		return "SPEEDELEC " + brand + " with " + mAh + " mAh battery and" + light + " head/tail light.\nPrice: "
+				+ getPrice() + "euros.\n";
 	}
 
-	
 }

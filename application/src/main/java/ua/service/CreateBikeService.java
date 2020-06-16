@@ -1,5 +1,7 @@
 package ua.service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import ua.model.Bike;
@@ -23,6 +25,12 @@ public class CreateBikeService {
 	private String result;
 	private Bike bike;
 
+	private List<Bike> newBikes = new ArrayList<Bike>();
+
+	public List<Bike> getNewBikes() {
+		return newBikes;
+	}
+
 	public String creationInfoConfirmSpeedelecAndEBike() {
 		return result = "\nCheck the bike parameters before creation: \n" + "brand - " + brand + "\n"
 				+ "max speed in km/h - " + maxSpeed + "\n" + "weight of the bike in grams - " + weight + "\n"
@@ -36,6 +44,11 @@ public class CreateBikeService {
 				+ "weight of the bike in grams - " + weight + "\n" + "lights - " + lightsFromBooleanToText() + "\n"
 				+ "color - " + color + "\n" + "price - " + price + "\nCreate new bike? ( Y / N )";
 	}
+
+//	public void defineParameter (Scanner sc , String message, ) {
+//		System.out.println("Enter the name of a brand\n");
+//		
+//	}
 
 	public void defineBrand(Scanner scanner) {
 		System.out.println("Enter the name of a brand\n");
@@ -224,8 +237,10 @@ public class CreateBikeService {
 				createBikeYorN(scanner, typeOfBike);
 			}
 		}
-		bike = new Speedelec(brand, color, price, weight, maxSpeed, lights, batteryCapacity);
-		System.out.println(bike);
+//		bike = new Speedelec(brand, color, price, weight, maxSpeed, lights, batteryCapacity);
+		newBikes.add(bike);
+//		System.out.println(getNewBikes());
+//		System.out.println(bike);
 		resetCreationParameters();
 	}
 
@@ -247,8 +262,9 @@ public class CreateBikeService {
 				createBikeYorN(scanner, typeOfBike);
 			}
 		}
-		bike = new EBike(brand, color, price, weight, maxSpeed, lights, batteryCapacity);
-		System.out.println(bike);
+//		bike = new EBike(brand, color, price, weight, maxSpeed, lights, batteryCapacity);
+		newBikes.add(bike);
+//		System.out.println(bike);
 		resetCreationParameters();
 	}
 
@@ -270,8 +286,9 @@ public class CreateBikeService {
 				createBikeYorN(scanner, typeOfBike);
 			}
 		}
-		bike = new FoldingBike(brand, sizeOfWheels, gearsQuantity, weight, lights, color, price );
-		System.out.println(bike);
+		bike = new FoldingBike(brand, sizeOfWheels, gearsQuantity, weight, lights, color, price);
+		newBikes.add(bike);
+//		System.out.println(bike);
 		resetCreationParameters();
 	}
 

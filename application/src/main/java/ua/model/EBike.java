@@ -140,7 +140,7 @@ public class EBike extends Bike implements Serializable{
 		if (!isLights()) {
 			light = " no";
 		}
-		return "SPEEDELEC " + brand + " with " + mAh + " mAh battery and" + light + " head/tail light.\nPrice: "
+		return "E-BIKE " + brand + " with " + mAh + " mAh battery and" + light + " head/tail light.\nPrice: "
 				+ getPrice() + "euros.\n";
 	}
 
