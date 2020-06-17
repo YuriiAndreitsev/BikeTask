@@ -47,7 +47,7 @@ public class SearchService implements Callable<Bike> {
 		System.out.println(
 				"Define the type of bike:\n" + "1 - Folding Bike;\n" + "2 - E-Bike;\n" + "3 - Speedelec Bike;\n");
 		while (typeOfBike <= 0) {
-			String maxSpeedInput = sc.next();
+			String maxSpeedInput = sc.nextLine();
 			try {
 				typeOfBike = (Integer.valueOf(maxSpeedInput));
 			} catch (NumberFormatException ex) {
@@ -75,7 +75,7 @@ public class SearchService implements Callable<Bike> {
 		for (Field field : fields) {
 			System.out.println("Would you like you include search by " + field.getName() + "? (Y / N)\n");
 			while (fieldSearchBy == null) {
-				String lightAnswer = sc.next();
+				String lightAnswer = sc.nextLine();
 				if (lightAnswer.equalsIgnoreCase("y")) {
 					fieldSearchBy = true;
 					defineParameterToSearchFor(sc, field);
@@ -101,7 +101,7 @@ public class SearchService implements Callable<Bike> {
 
 		if (field.getType().equals(int.class)) {
 			while (temp <= 0) {
-				String input = sc.next();
+				String input = sc.nextLine();
 				try {
 					temp = Integer.valueOf(input);
 				} catch (NumberFormatException ex) {
@@ -112,7 +112,7 @@ public class SearchService implements Callable<Bike> {
 		} else if (field.getType().equals(boolean.class)) {
 			while (bool == null) {
 				System.out.println("Type 'y' if lights are available  or  'n' if bike has no lights");
-				String input = sc.next();
+				String input = sc.nextLine();
 				if (input.equalsIgnoreCase("y")) {
 					bool = true;
 				} else if (input.equalsIgnoreCase("n")) {
@@ -124,7 +124,7 @@ public class SearchService implements Callable<Bike> {
 			}
 			result = bool;
 		} else {
-			result = sc.next();
+			result = sc.nextLine();
 		}
 		try {
 			field.set(bike, result);
@@ -142,7 +142,7 @@ public class SearchService implements Callable<Bike> {
 			Boolean bool = null;
 			System.out.println("I see, you havent selected anything, would you like to cancel search? ( Y / N )");
 			while (bool == null) {
-				String input = sc.next();
+				String input = sc.nextLine();
 				if (input.equalsIgnoreCase("y")) {
 //					bool = true;
 					return;
@@ -155,7 +155,7 @@ public class SearchService implements Callable<Bike> {
 			System.out.println(
 					"If you still want to search a bike, enter at least brand name\nPlease, select at least a name of brand.");
 			while (bike.getBrand() == null) {
-				bike.setBrand(sc.next());
+				bike.setBrand(sc.nextLine());
 			}
 		} else {
 			System.out.println(" You have selected the next parameters:\n");

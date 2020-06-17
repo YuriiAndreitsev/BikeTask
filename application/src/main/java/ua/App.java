@@ -43,7 +43,7 @@ public class App {
 		ExecutorService es = Executors.newFixedThreadPool(1);
 
 		while (scanner.hasNext() && !exit) {
-			String option = scanner.next();
+			String option = scanner.nextLine();
 			switch (option) {
 			case "1":
 				service.showAllBikes(allBikes);

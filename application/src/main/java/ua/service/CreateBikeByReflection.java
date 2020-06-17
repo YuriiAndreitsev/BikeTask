@@ -68,7 +68,7 @@ public class CreateBikeByReflection {
 		Object result = new Object();
 		if (field.getType().equals(int.class)) {
 			while (temp <= 0) {
-				String input = sc.next();
+				String input = sc.nextLine();
 				try {
 					temp = Integer.valueOf(input);
 				} catch (NumberFormatException ex) {
@@ -79,7 +79,7 @@ public class CreateBikeByReflection {
 		} else if (field.getType().equals(boolean.class)) {
 			while (bool == null) {
 				System.out.println("  Type 'y'  or  'n'");
-				String input = sc.next();
+				String input = sc.nextLine();
 				if (input.equalsIgnoreCase("y")) {
 					bool = true;
 				} else if (input.equalsIgnoreCase("n")) {
@@ -90,7 +90,7 @@ public class CreateBikeByReflection {
 			}
 			result = bool;
 		} else {
-			result = sc.next();
+			result = sc.nextLine();
 		}
 		try {
 			field.set(bike, result);
