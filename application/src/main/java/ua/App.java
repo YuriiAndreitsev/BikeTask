@@ -1,8 +1,10 @@
 package ua;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.StandardOpenOption;
 import java.util.List;
 import java.util.Scanner;
-import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -13,7 +15,6 @@ import ua.model.EBike;
 import ua.model.FoldingBike;
 import ua.model.Speedelec;
 import ua.service.CreateBikeByReflection;
-import ua.service.CreateBikeService;
 import ua.service.SearchService;
 import ua.service.Service;
 
@@ -28,21 +29,30 @@ public class App {
 			+ "5 - Find the first item of a particular brand\n" + "6 - Write to file\n" + "7 - Stop the program\n";
 
 	public static void main(String[] args) {
-		String ecobike = "ecobike.txt";
-//		String ecobike = args[0];
-		Service service = new Service();
-		service.setFilename(ecobike);
-		List<Bike> allBikes = service.initializeBikeList("ecobike.txt");
-		Scanner scanner = new Scanner(System.in);
+//		String ecobike = "ecobike.txt";
+		String ecobike = "";
+		//JUST IN CASE THE USER FORGOT TO ENTER THE START KEY :  java -jar application-1.0-SNAPSHOT.jar ecobike.txt 
+			// I JUST WANT TO INSURE, THAT MY PROGRAMM WILL START WITH NO EXCEPTIONS. SO YOU WONT THINK THAT I'VE DONE SOMETHING WRONG
+		try {
+			ecobike = args[0];
+		} catch (IndexOutOfBoundsException e) {
+			ecobike = "ecobike.txt";
+		}
+
+		Service service = new Service(ecobike);
+		List<Bike> allBikes = service.initializeBikeList(ecobike);
 		CreateBikeByReflection createBike = new CreateBikeByReflection();
-//		CreateBikeService createBikeService = new CreateBikeService();
 		SearchService search = new SearchService(allBikes);
-		System.out.println(MENU);
+//		service.setFilename(ecobike);
+
+		Scanner scanner = new Scanner(System.in);
 
 		boolean exit = false;
 		ExecutorService es = Executors.newFixedThreadPool(1);
+		System.out.println(MENU);
 
 		while (scanner.hasNext() && !exit) {
+
 			String option = scanner.nextLine();
 			switch (option) {
 			case "1":
@@ -67,7 +77,7 @@ public class App {
 				search.searchBike(scanner, allBikes);
 				Future<Bike> searchResult = es.submit(search);
 				try {
-					System.out.println("THREAD RESULT = " + searchResult.get());
+					System.out.println("SEARCH RESULT = " + searchResult.get());
 				} catch (InterruptedException e) {
 					System.out.println("Thread was interrupted");
 				} catch (ExecutionException e) {
@@ -78,7 +88,11 @@ public class App {
 			}
 			case "6": {
 				service.writeToFile(createBike.getNewBikes());
-				;
+				// HERE WE ARE TRANSFERRING BIKES FROM UNSAVED STATE TO ALLBIKES COLLECTION,
+				// SO WHEN AFTER WRITING TO FILE (OPTION 6), WE WOULD BE ABLE TO SEE NEW ITEMS (
+				// NO NEED TO PARSE TXT FILE), AS IT IS PARSED ONCE IN THE START
+				allBikes.addAll(createBike.getNewBikes());
+				createBike.getNewBikes().clear();
 				break;
 			}
 			case "7": {
@@ -87,15 +101,22 @@ public class App {
 				System.exit(0);
 			}
 			case "8": {
-				System.out.println(createBike.getNewBikes());
+				Bike folding = new FoldingBike("test brand", 20, 5, 10000, false, "red", 999);
+
+				try {
+					Files.write(service.createPathTest(), service.bikeToText(folding), StandardOpenOption.APPEND);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 			default:
 				System.out.println(MENU);
 			}
-			
+
 			System.out.println(MENU);
-			
+
 		}
-		
+
 	}
 }

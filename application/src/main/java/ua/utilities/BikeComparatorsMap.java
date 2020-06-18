@@ -1,4 +1,4 @@
-package ua.service;
+package ua.utilities;
 
 import java.util.Comparator;
 import java.util.HashMap;

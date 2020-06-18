@@ -1,0 +1,2 @@
+FOLDING BIKE test brand; 20; 5; 10000; false; red; 999
+FOLDING BIKE test brand; 20; 5; 10000; false; red; 999

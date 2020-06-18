@@ -1,4 +1,4 @@
-package ua.service;
+package ua.utilities;
 
 import ua.model.Bike;
 

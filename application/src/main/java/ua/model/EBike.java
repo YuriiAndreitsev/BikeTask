@@ -21,16 +21,27 @@ public class EBike extends Bike implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 
-	public EBike(String brand, String color, int price, int weight, int maxSpeed, boolean lights, int mAh) {
+public EBike(String brand, int maxSpeed, int weight, boolean lights, int mAh, String color, int price) {
 		super();
 		this.brand = brand;
-		this.color = color;
-		this.price = price;
-		this.weight = weight;
 		this.maxSpeed = maxSpeed;
+		this.weight = weight;
 		this.lights = lights;
 		this.mAh = mAh;
+		this.color = color;
+		this.price = price;
 	}
+
+//	public EBike(String brand, String color, int price, int weight, int maxSpeed, boolean lights, int mAh) {
+//		super();
+//		this.brand = brand;
+//		this.color = color;
+//		this.price = price;
+//		this.weight = weight;
+//		this.maxSpeed = maxSpeed;
+//		this.lights = lights;
+//		this.mAh = mAh;
+//	}
 
 	public int getMaxSpeed() {
 		return maxSpeed;

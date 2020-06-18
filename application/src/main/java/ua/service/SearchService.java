@@ -15,6 +15,7 @@ import ua.model.Bike;
 import ua.model.EBike;
 import ua.model.FoldingBike;
 import ua.model.Speedelec;
+import ua.utilities.BikeComparatorsMap;
 
 public class SearchService implements Callable<Bike> {
 	private boolean confirm = false;
@@ -79,7 +80,7 @@ public class SearchService implements Callable<Bike> {
 				if (lightAnswer.equalsIgnoreCase("y")) {
 					fieldSearchBy = true;
 					defineParameterToSearchFor(sc, field);
-					System.out.println(bike);
+//					System.out.println(bike);
 				} else if (lightAnswer.equalsIgnoreCase("n")) {
 					fieldSearchBy = false;
 				} else {
@@ -177,7 +178,7 @@ public class SearchService implements Callable<Bike> {
 			System.out.println("Sorry, nothing is found");
 			return null;
 		} else {
-			System.out.println(bikeList.get(index));
+//			System.out.println(bikeList.get(index));
 			return bikeList.get(index);
 		}
 	}
